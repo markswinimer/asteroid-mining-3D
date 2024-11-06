@@ -48,8 +48,12 @@ public class PlayerWeaponMount : MonoBehaviour
             // Rotate the weapon mount to face the target point
             Quaternion targetRotation = Quaternion.LookRotation(aimDirection, Vector3.up);
             _mountedWeapon.transform.rotation = targetRotation;
+
+            // Freeze rotation on unwanted axes
+            _mountedWeapon.transform.eulerAngles = new Vector3(0, _mountedWeapon.transform.eulerAngles.y, 0);
         }
     }
+
 
     void HandleInput()
     {
