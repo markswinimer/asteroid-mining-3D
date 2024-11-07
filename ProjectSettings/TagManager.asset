@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Tethered
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - EnemyProjectile
   - EnemyShip
   - Ore
-  - 
-  - 
-  - 
+  - ShipBounds
+  - AttractionSphere
+  - Station
   - 
   - 
   - 

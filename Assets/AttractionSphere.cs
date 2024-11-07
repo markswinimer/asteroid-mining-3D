@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
-
+using System.Collections;
 public class AttractionSphere : MonoBehaviour
 {
     [SerializeField] private string oreLayerName = "Ore";
@@ -11,8 +11,13 @@ public class AttractionSphere : MonoBehaviour
     [SerializeField] private float pullStrength = 2f;  // Base strength of the pulling force
     [SerializeField] private int maxTetheredItems;
 
+    [SerializeField] private GameObject attractionPoint;
+
     private Dictionary<GameObject, LineRenderer> activeLines = new Dictionary<GameObject, LineRenderer>();
     private InputAction removeOreAction;
+    private bool isReleasingOres = false;
+    private float releaseTimer = 0f;
+    private const float releaseInterval = 0.25f;
 
     private void Awake()
     {
@@ -25,6 +30,44 @@ public class AttractionSphere : MonoBehaviour
         else
         {
             Debug.LogError("Remove ore action (Interact2) not found!");
+        }
+    }
+
+    private void Update()
+    {
+        // Check if the Q key is held down
+        if (removeOreAction != null && removeOreAction.IsPressed())
+        {
+            // Increment the timer
+            releaseTimer += Time.deltaTime;
+
+            // Check if the interval has passed
+            if (releaseTimer >= releaseInterval || isReleasingOres == false)
+            {
+                isReleasingOres = true;
+                // Release the newest ore
+                RemoveNewestOre();
+
+                // Reset the timer
+                releaseTimer = 0f;
+            }
+        }
+        else
+        {
+            isReleasingOres = false;
+            // Reset the timer if the key is not held
+            releaseTimer = 0f;
+        }
+        // Update lines and apply pulling force
+        foreach (var oreEntry in new List<GameObject>(activeLines.Keys))
+        {
+            if (oreEntry == null) continue;
+
+            LineRenderer line = activeLines[oreEntry];
+            line.SetPosition(0, shipTransform.position);
+            line.SetPosition(1, oreEntry.transform.position);
+
+            PullOreWithDistanceEffect(oreEntry);
         }
     }
 
@@ -65,27 +108,6 @@ public class AttractionSphere : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (removeOreAction != null && removeOreAction.triggered)
-        {
-            Debug.Log("Remove ore action triggered!");
-            RemoveNewestOre();
-        }
-
-        // Update lines and apply pulling force
-        foreach (var oreEntry in new List<GameObject>(activeLines.Keys))
-        {
-            if (oreEntry == null) continue;
-
-            LineRenderer line = activeLines[oreEntry];
-            line.SetPosition(0, shipTransform.position);
-            line.SetPosition(1, oreEntry.transform.position);
-
-            PullOreWithDistanceEffect(oreEntry);
-        }
-    }
-
     private void ConfigureLineRenderer(LineRenderer line)
     {
         line.startWidth = 0.05f;
@@ -101,14 +123,50 @@ public class AttractionSphere : MonoBehaviour
         Rigidbody oreRb = ore.GetComponent<Rigidbody>();
         if (oreRb == null) return;
 
-        Vector3 directionToShip = (shipTransform.position - ore.transform.position).normalized;
         float distanceToShip = Vector3.Distance(shipTransform.position, ore.transform.position);
+        float distanceToAttractionPoint = Vector3.Distance(attractionPoint.transform.position, ore.transform.position);
 
-        // Reduce pull force as the ore gets closer to the ship
-        float dynamicPullStrength = pullStrength * Mathf.Clamp(distanceToShip / maxDistance, 0.1f, 1f);
-        oreRb.AddForce(directionToShip * dynamicPullStrength);
+        // Check if the ore is within the maxDistance to the ship
+        if (distanceToShip < maxDistance)
+        {
+            // Set Rigidbody to kinematic to stop affecting ship physics
+            if (!oreRb.isKinematic)
+            {
+                // Set initial speed reference when ore becomes kinematic
+                oreRb.isKinematic = true;
+                oreRb.linearVelocity = Vector3.zero;  // Clear existing physics-based velocity
+                oreRb.angularVelocity = Vector3.zero;  // Stop any rotation
+            }
+
+            // Gradually reduce rotation speed as it gets closer
+            float rotationDampening = Mathf.Clamp01(distanceToAttractionPoint / maxDistance);
+            ore.transform.rotation = Quaternion.Lerp(
+                ore.transform.rotation,
+                Quaternion.identity, // or another target rotation if desired
+                (1 - rotationDampening) * Time.deltaTime
+            );
+        }
+        else
+        {
+            // Switch to non-kinematic and apply force-based pulling towards the ship
+            oreRb.isKinematic = false;
+
+            // Apply a dynamic pull strength based on the distance for smooth effect
+            Vector3 directionToShip = (shipTransform.position - ore.transform.position).normalized;
+            float dynamicPullStrength = pullStrength * Mathf.Clamp(distanceToShip / maxDistance, 0.1f, 1f);
+            oreRb.AddForce(directionToShip * dynamicPullStrength);
+        }
     }
 
+    private IEnumerator ReleaseOresContinuously()
+    {
+        while (true)
+        {
+            // Release one ore every 0.25 seconds
+            RemoveNewestOre();
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
 
     public void RemoveNewestOre()
     {
@@ -147,6 +205,13 @@ public class AttractionSphere : MonoBehaviour
 
     public void UntetherOre(GameObject ore)
     {
+        StartCoroutine(UntetherOreAfterDelay(ore, 2f)); // Start the coroutine with a 2-second delay
+    }
+
+    private IEnumerator UntetherOreAfterDelay(GameObject ore, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         Collider collider = ore.GetComponent<Collider>(); // Changed from Collider2D for 3D
         if (collider != null)
         {
