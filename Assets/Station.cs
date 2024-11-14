@@ -7,14 +7,13 @@ public class Station : MonoBehaviour
     public string stationName;
     public int stationId;
 
-    private PlayerShip _playerShip;
+    public PlayerShip _playerShip;
     public bool _isCurrentStation;
 
     void Awake()
     {
         stationName = _stationSettings.stationName;
         stationId = _stationSettings.stationId;
-        _playerShip = PlayerShip.Instance;
     }
     void Start()
     {
