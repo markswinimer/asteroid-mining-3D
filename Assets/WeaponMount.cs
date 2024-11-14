@@ -38,12 +38,14 @@ public class PlayerWeaponMount : MonoBehaviour
 
         // Cast a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero); // Plane on the XZ plane at y = 0
+
+        // Define the ground plane based on the weapon mount's height to better match its position
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, _mountedWeapon.transform.position.y, 0));
         if (groundPlane.Raycast(ray, out float distance))
         {
-            // Get the point on the ground plane where the ray intersects
+            // Get the intersection point with the ground plane at the weapon's height
             Vector3 targetPoint = ray.GetPoint(distance);
-            Vector3 aimDirection = (targetPoint - transform.position).normalized;
+            Vector3 aimDirection = (targetPoint - _mountedWeapon.transform.position).normalized;
 
             // Rotate the weapon mount to face the target point
             Quaternion targetRotation = Quaternion.LookRotation(aimDirection, Vector3.up);
@@ -53,7 +55,6 @@ public class PlayerWeaponMount : MonoBehaviour
             _mountedWeapon.transform.eulerAngles = new Vector3(0, _mountedWeapon.transform.eulerAngles.y, 0);
         }
     }
-
 
     void HandleInput()
     {

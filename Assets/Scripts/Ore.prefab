@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625442f289e4d2a4ab7895b27b82ce90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oreName: Iron
+  OreType: IronOre
   description: Basic Ore
 --- !u!54 &1012245722899673963
 Rigidbody:

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Collections;
+
 public class AttractionSphere : MonoBehaviour
 {
     [SerializeField] private string oreLayerName = "Ore";
@@ -19,45 +20,46 @@ public class AttractionSphere : MonoBehaviour
     private float releaseTimer = 0f;
     private const float releaseInterval = 0.25f;
 
+    private bool _isPlayerInProximity = false; // Proximity flag
+
+    private StationManager _stationManager;
+
     private void Awake()
     {
-        removeOreAction = InputSystem.actions.FindAction("Interact2");
-
+        removeOreAction = InputSystem.actions.FindAction("Interact1");
+        _stationManager = StationManager.Instance;
+        
         if (removeOreAction != null)
         {
-            removeOreAction.Enable();  // Enable the action to listen for input
-        }
-        else
-        {
-            Debug.LogError("Remove ore action (Interact2) not found!");
+            removeOreAction.Enable();
         }
     }
 
     private void Update()
     {
-        // Check if the Q key is held down
-        if (removeOreAction != null && removeOreAction.IsPressed())
+        _isPlayerInProximity = _stationManager.inStationProximity;
+        if (_isPlayerInProximity && removeOreAction != null && removeOreAction.IsPressed())
         {
-            // Increment the timer
+            RemoveAllOres();
+            //remove all ore instantly
+            releaseTimer = 0f;
+        }
+        else if (removeOreAction != null && removeOreAction.IsPressed())
+        {
             releaseTimer += Time.deltaTime;
-
-            // Check if the interval has passed
-            if (releaseTimer >= releaseInterval || isReleasingOres == false)
+            if (releaseTimer >= releaseInterval || !isReleasingOres)
             {
                 isReleasingOres = true;
-                // Release the newest ore
-                RemoveNewestOre();
-
-                // Reset the timer
+                RemoveNewestOre();  // Regular ore release
                 releaseTimer = 0f;
             }
         }
         else
         {
             isReleasingOres = false;
-            // Reset the timer if the key is not held
             releaseTimer = 0f;
         }
+
         // Update lines and apply pulling force
         foreach (var oreEntry in new List<GameObject>(activeLines.Keys))
         {
@@ -71,24 +73,20 @@ public class AttractionSphere : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // Changed from OnTriggerEnter2D for 3D
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered: " + other.gameObject.name);
         if (activeLines.Count >= maxTetheredItems) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer(oreLayerName))
+        if (other.gameObject.layer == LayerMask.NameToLayer(oreLayerName) && !other.CompareTag("Collecting"))
         {
             LineRenderer line = other.gameObject.GetComponent<LineRenderer>();
             if (line == null)
             {
                 other.gameObject.tag = "Tethered";
-
-                // Add LineRenderer and configure it
                 line = other.gameObject.AddComponent<LineRenderer>();
                 ConfigureLineRenderer(line);
             }
 
-            // Only add to activeLines if it’s not already in the dictionary
             if (!activeLines.ContainsKey(other.gameObject))
             {
                 activeLines.Add(other.gameObject, line);
@@ -96,13 +94,14 @@ public class AttractionSphere : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other) // Changed from OnTriggerExit2D for 3D
+    private void OnTriggerExit(Collider other)
     {
         if (activeLines.ContainsKey(other.gameObject))
         {
             float distanceToShip = Vector3.Distance(other.transform.position, shipTransform.position);
             if (distanceToShip >= removeDistance)
             {
+                Debug.Log("Ore removed from attraction sphere");
                 RemoveOre(other.gameObject);
             }
         }
@@ -126,50 +125,34 @@ public class AttractionSphere : MonoBehaviour
         float distanceToShip = Vector3.Distance(shipTransform.position, ore.transform.position);
         float distanceToAttractionPoint = Vector3.Distance(attractionPoint.transform.position, ore.transform.position);
 
-        // Check if the ore is within the maxDistance to the ship
         if (distanceToShip < maxDistance)
         {
-            // Set Rigidbody to kinematic to stop affecting ship physics
             if (!oreRb.isKinematic)
             {
-                // Set initial speed reference when ore becomes kinematic
                 oreRb.isKinematic = true;
-                oreRb.linearVelocity = Vector3.zero;  // Clear existing physics-based velocity
-                oreRb.angularVelocity = Vector3.zero;  // Stop any rotation
+                oreRb.linearVelocity = Vector3.zero;
+                oreRb.angularVelocity = Vector3.zero;
             }
 
-            // Gradually reduce rotation speed as it gets closer
             float rotationDampening = Mathf.Clamp01(distanceToAttractionPoint / maxDistance);
             ore.transform.rotation = Quaternion.Lerp(
                 ore.transform.rotation,
-                Quaternion.identity, // or another target rotation if desired
+                Quaternion.identity,
                 (1 - rotationDampening) * Time.deltaTime
             );
         }
         else
         {
-            // Switch to non-kinematic and apply force-based pulling towards the ship
             oreRb.isKinematic = false;
-
-            // Apply a dynamic pull strength based on the distance for smooth effect
             Vector3 directionToShip = (shipTransform.position - ore.transform.position).normalized;
             float dynamicPullStrength = pullStrength * Mathf.Clamp(distanceToShip / maxDistance, 0.1f, 1f);
             oreRb.AddForce(directionToShip * dynamicPullStrength);
         }
     }
 
-    private IEnumerator ReleaseOresContinuously()
-    {
-        while (true)
-        {
-            // Release one ore every 0.25 seconds
-            RemoveNewestOre();
-            yield return new WaitForSeconds(0.25f);
-        }
-    }
-
     public void RemoveNewestOre()
     {
+        Debug.Log("Removing newest ore");
         if (activeLines.Count > 0)
         {
             GameObject newestOre = null;
@@ -180,39 +163,44 @@ public class AttractionSphere : MonoBehaviour
 
             if (newestOre != null)
             {
-                Debug.Log("should be removed");
-                RemoveOre(newestOre);
+                RemoveOre(newestOre, "Untagged");
             }
         }
     }
 
-    private void RemoveOre(GameObject ore)
+    private void RemoveOre(GameObject ore, string tag = "Untagged")
     {
+        Debug.Log("Removing 1 ore");
         if (!activeLines.ContainsKey(ore)) return;
-        Debug.Log("Removing ore: " + ore.name);
+        
         LineRenderer line = activeLines[ore];
-        Debug.Log("Removing line: " + line.name);
+
         if (line != null)
         {
             Destroy(line);
         }
 
-        ore.tag = "Untagged";
+        ore.tag = tag;
         activeLines.Remove(ore);
 
         UntetherOre(ore);
     }
 
-    public void UntetherOre(GameObject ore)
+    public void RemoveAllOres()
     {
-        StartCoroutine(UntetherOreAfterDelay(ore, 2f)); // Start the coroutine with a 2-second delay
+        Debug.Log("Removing all ores");
+        if (!_isPlayerInProximity) return;
+
+        foreach (var ore in new List<GameObject>(activeLines.Keys))
+        {
+            RemoveOre(ore, "Collecting");
+        }
     }
 
-    private IEnumerator UntetherOreAfterDelay(GameObject ore, float delay)
+    public void UntetherOre(GameObject ore)
     {
-        yield return new WaitForSeconds(delay);
-
-        Collider collider = ore.GetComponent<Collider>(); // Changed from Collider2D for 3D
+        Debug.Log("Untethering ore");
+        Collider collider = ore.GetComponent<Collider>();
         if (collider != null)
         {
             collider.enabled = false;

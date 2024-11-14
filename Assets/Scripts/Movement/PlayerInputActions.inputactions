@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Interact1",
                     "type": "Button",
                     "id": "fac85392-9cd4-4c47-a8da-8911e5b74689",
                     "expectedControlType": "",
@@ -251,18 +251,18 @@
                 {
                     "name": "",
                     "id": "13f43569-8981-4c2d-83eb-cbf0c247c466",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Interact",
+                    "action": "Interact1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "9e526e35-1c2e-462a-a5ab-b615974b5ce6",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -278,6 +278,82 @@
                     "processors": "",
                     "groups": "",
                     "action": "SecondaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GeneralInteraction",
+            "id": "7fdedb21-ca88-472d-b3ab-5f0f7a202935",
+            "actions": [
+                {
+                    "name": "Interact1",
+                    "type": "Button",
+                    "id": "eee56597-60ae-45f5-9d01-95bedf1e7893",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact2",
+                    "type": "Button",
+                    "id": "4941d012-05f0-4b63-96db-f346c7fbc0b6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9a978ada-72a9-4883-9567-ade0290464b2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12146dbb-6f0d-41a1-84d6-4cd070e654ae",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "StationProximity",
+            "id": "ed279409-bf4d-41b3-8b0b-3218dfdc8d92",
+            "actions": [
+                {
+                    "name": "ReleaseOre",
+                    "type": "Button",
+                    "id": "b68608bc-2b3b-486d-8a89-d244d5088dbb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bbb5e2f4-7e8e-490f-b455-7590401f7b4d",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleaseOre",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

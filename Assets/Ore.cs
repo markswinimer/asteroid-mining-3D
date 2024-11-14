@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ore : MonoBehaviour
 {
-    public string oreName;
+    public string OreType;
     public string description;
 
     private Rigidbody _rigidBody; // Changed to Rigidbody for 3D

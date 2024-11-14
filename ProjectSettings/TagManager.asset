@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Tethered
+  - Untetherable
+  - Collecting
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - ShipBounds
   - AttractionSphere
   - Station
-  - 
+  - ProximitySphere
   - 
   - 
   - 

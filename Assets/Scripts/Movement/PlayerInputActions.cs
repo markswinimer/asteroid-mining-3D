@@ -64,7 +64,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Interact1"",
                     ""type"": ""Button"",
                     ""id"": ""fac85392-9cd4-4c47-a8da-8911e5b74689"",
                     ""expectedControlType"": """",
@@ -273,18 +273,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""13f43569-8981-4c2d-83eb-cbf0c247c466"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Interact"",
+                    ""action"": ""Interact1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""9e526e35-1c2e-462a-a5ab-b615974b5ce6"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -300,6 +300,82 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GeneralInteraction"",
+            ""id"": ""7fdedb21-ca88-472d-b3ab-5f0f7a202935"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact1"",
+                    ""type"": ""Button"",
+                    ""id"": ""eee56597-60ae-45f5-9d01-95bedf1e7893"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4941d012-05f0-4b63-96db-f346c7fbc0b6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9a978ada-72a9-4883-9567-ade0290464b2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12146dbb-6f0d-41a1-84d6-4cd070e654ae"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""StationProximity"",
+            ""id"": ""ed279409-bf4d-41b3-8b0b-3218dfdc8d92"",
+            ""actions"": [
+                {
+                    ""name"": ""ReleaseOre"",
+                    ""type"": ""Button"",
+                    ""id"": ""b68608bc-2b3b-486d-8a89-d244d5088dbb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""bbb5e2f4-7e8e-490f-b455-7590401f7b4d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseOre"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -375,13 +451,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
         m_Player_PrimaryAction = m_Player.FindAction("PrimaryAction", throwIfNotFound: true);
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Interact1 = m_Player.FindAction("Interact1", throwIfNotFound: true);
         m_Player_Interact2 = m_Player.FindAction("Interact2", throwIfNotFound: true);
+        // GeneralInteraction
+        m_GeneralInteraction = asset.FindActionMap("GeneralInteraction", throwIfNotFound: true);
+        m_GeneralInteraction_Interact1 = m_GeneralInteraction.FindAction("Interact1", throwIfNotFound: true);
+        m_GeneralInteraction_Interact2 = m_GeneralInteraction.FindAction("Interact2", throwIfNotFound: true);
+        // StationProximity
+        m_StationProximity = asset.FindActionMap("StationProximity", throwIfNotFound: true);
+        m_StationProximity_ReleaseOre = m_StationProximity.FindAction("ReleaseOre", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputActions.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_GeneralInteraction.enabled, "This will cause a leak and performance issues, PlayerInputActions.GeneralInteraction.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_StationProximity.enabled, "This will cause a leak and performance issues, PlayerInputActions.StationProximity.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -447,7 +532,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Boost;
     private readonly InputAction m_Player_PrimaryAction;
     private readonly InputAction m_Player_SecondaryAction;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Interact1;
     private readonly InputAction m_Player_Interact2;
     public struct PlayerActions
     {
@@ -457,7 +542,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputAction @PrimaryAction => m_Wrapper.m_Player_PrimaryAction;
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Interact1 => m_Wrapper.m_Player_Interact1;
         public InputAction @Interact2 => m_Wrapper.m_Player_Interact2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -480,9 +565,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryAction.started += instance.OnSecondaryAction;
             @SecondaryAction.performed += instance.OnSecondaryAction;
             @SecondaryAction.canceled += instance.OnSecondaryAction;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @Interact1.started += instance.OnInteract1;
+            @Interact1.performed += instance.OnInteract1;
+            @Interact1.canceled += instance.OnInteract1;
             @Interact2.started += instance.OnInteract2;
             @Interact2.performed += instance.OnInteract2;
             @Interact2.canceled += instance.OnInteract2;
@@ -502,9 +587,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryAction.started -= instance.OnSecondaryAction;
             @SecondaryAction.performed -= instance.OnSecondaryAction;
             @SecondaryAction.canceled -= instance.OnSecondaryAction;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @Interact1.started -= instance.OnInteract1;
+            @Interact1.performed -= instance.OnInteract1;
+            @Interact1.canceled -= instance.OnInteract1;
             @Interact2.started -= instance.OnInteract2;
             @Interact2.performed -= instance.OnInteract2;
             @Interact2.canceled -= instance.OnInteract2;
@@ -525,6 +610,106 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // GeneralInteraction
+    private readonly InputActionMap m_GeneralInteraction;
+    private List<IGeneralInteractionActions> m_GeneralInteractionActionsCallbackInterfaces = new List<IGeneralInteractionActions>();
+    private readonly InputAction m_GeneralInteraction_Interact1;
+    private readonly InputAction m_GeneralInteraction_Interact2;
+    public struct GeneralInteractionActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public GeneralInteractionActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact1 => m_Wrapper.m_GeneralInteraction_Interact1;
+        public InputAction @Interact2 => m_Wrapper.m_GeneralInteraction_Interact2;
+        public InputActionMap Get() { return m_Wrapper.m_GeneralInteraction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralInteractionActions set) { return set.Get(); }
+        public void AddCallbacks(IGeneralInteractionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GeneralInteractionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneralInteractionActionsCallbackInterfaces.Add(instance);
+            @Interact1.started += instance.OnInteract1;
+            @Interact1.performed += instance.OnInteract1;
+            @Interact1.canceled += instance.OnInteract1;
+            @Interact2.started += instance.OnInteract2;
+            @Interact2.performed += instance.OnInteract2;
+            @Interact2.canceled += instance.OnInteract2;
+        }
+
+        private void UnregisterCallbacks(IGeneralInteractionActions instance)
+        {
+            @Interact1.started -= instance.OnInteract1;
+            @Interact1.performed -= instance.OnInteract1;
+            @Interact1.canceled -= instance.OnInteract1;
+            @Interact2.started -= instance.OnInteract2;
+            @Interact2.performed -= instance.OnInteract2;
+            @Interact2.canceled -= instance.OnInteract2;
+        }
+
+        public void RemoveCallbacks(IGeneralInteractionActions instance)
+        {
+            if (m_Wrapper.m_GeneralInteractionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGeneralInteractionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GeneralInteractionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GeneralInteractionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GeneralInteractionActions @GeneralInteraction => new GeneralInteractionActions(this);
+
+    // StationProximity
+    private readonly InputActionMap m_StationProximity;
+    private List<IStationProximityActions> m_StationProximityActionsCallbackInterfaces = new List<IStationProximityActions>();
+    private readonly InputAction m_StationProximity_ReleaseOre;
+    public struct StationProximityActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public StationProximityActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ReleaseOre => m_Wrapper.m_StationProximity_ReleaseOre;
+        public InputActionMap Get() { return m_Wrapper.m_StationProximity; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(StationProximityActions set) { return set.Get(); }
+        public void AddCallbacks(IStationProximityActions instance)
+        {
+            if (instance == null || m_Wrapper.m_StationProximityActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_StationProximityActionsCallbackInterfaces.Add(instance);
+            @ReleaseOre.started += instance.OnReleaseOre;
+            @ReleaseOre.performed += instance.OnReleaseOre;
+            @ReleaseOre.canceled += instance.OnReleaseOre;
+        }
+
+        private void UnregisterCallbacks(IStationProximityActions instance)
+        {
+            @ReleaseOre.started -= instance.OnReleaseOre;
+            @ReleaseOre.performed -= instance.OnReleaseOre;
+            @ReleaseOre.canceled -= instance.OnReleaseOre;
+        }
+
+        public void RemoveCallbacks(IStationProximityActions instance)
+        {
+            if (m_Wrapper.m_StationProximityActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IStationProximityActions instance)
+        {
+            foreach (var item in m_Wrapper.m_StationProximityActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_StationProximityActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public StationProximityActions @StationProximity => new StationProximityActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -576,7 +761,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnBoost(InputAction.CallbackContext context);
         void OnPrimaryAction(InputAction.CallbackContext context);
         void OnSecondaryAction(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnInteract1(InputAction.CallbackContext context);
         void OnInteract2(InputAction.CallbackContext context);
+    }
+    public interface IGeneralInteractionActions
+    {
+        void OnInteract1(InputAction.CallbackContext context);
+        void OnInteract2(InputAction.CallbackContext context);
+    }
+    public interface IStationProximityActions
+    {
+        void OnReleaseOre(InputAction.CallbackContext context);
     }
 }
