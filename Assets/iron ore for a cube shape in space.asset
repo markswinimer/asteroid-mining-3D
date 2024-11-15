@@ -1,0 +1,708 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a6b9796d1c0440eba061ace5e9dff6, type: 3}
+  m_Name: iron ore for a cube shape in space
+  m_EditorClassIdentifier: 
+  assetsData:
+  - rid: 2307438730152772101
+  - rid: 2307438730152772107
+  - rid: 2307438730152772113
+  - rid: 2307438730152772119
+  - rid: 2307438730152772125
+  - rid: 2307438730152772128
+  currentMode: TextToImage
+  m_Data:
+  - rid: 2307438730152772093
+  - rid: 2307438730152772094
+  - rid: 2307438730152772095
+  preRefinedArtifact:
+    rid: 2307438730152772128
+  refinedArtifact:
+    rid: 2307438730152772128
+  selectedArtifact:
+    rid: 2307438730152772128
+  m_Operators:
+  - rid: 2307438730152772096
+  - rid: 2307438730152772135
+  - rid: 2307438730152772136
+  - rid: 2307438730152772137
+  - rid: 2307438730152772138
+  m_PreRefineOperators:
+  - rid: 2307438730152772096
+  - rid: 2307438730152772097
+  - rid: 2307438730152772098
+  - rid: 2307438730152772099
+  - rid: 2307438730152772100
+  m_ExportedArtifacts:
+  - m_UnityGuid: 063498c3eb1595946889995e8354bcc3
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 265508384fadd474e9c9e7056790dc7c
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: c1356a7d060227540bd66120dfdae705
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 362d0059b035ecf4c99c9fd4ce3017ce
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 2cb111c2fb272cd418bda3ee92811d13
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 2bcab6408b56bef4fbebf710c5b8a98b
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 2e2eb2c79249bd44c95d2176c8796d80
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: ed4492ce8fe0ebe4e8706bca5741b007
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: a4d19b8e3dee79b4ca46887eb6bed6aa
+    m_MuseGuid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+  - m_UnityGuid: 8508f45d8d857b9459215c2f23ca915c
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: e820ab3df50acab499aa4f0cfc3f7a5b
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: 1d4c3512db676c443955fdc5babb8c4c
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: 7a564631b378d2b47b7cb2246214c03c
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: 618b771535e0cff44b18ca541caf140f
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: 9687bb15a77fedd4dae05ce08a0c20df
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: c366a30f9f8c270409b49398692768b7
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  - m_UnityGuid: 15cf1ba4307bc884bbcb01bc270e1f17
+    m_MuseGuid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+  references:
+    version: 2
+    RefIds:
+    - rid: 2307438730152772093
+      type: {class: BookmarkManager, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_BookmarkedArtifacts:
+          m_Values: []
+        m_IsFilterEnabled: 0
+    - rid: 2307438730152772094
+      type: {class: MainUI/UISize, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_NodeListWidth: 300
+        m_NodeListRefineWidth: 300
+        m_AssetListRefineWidth: 200
+    - rid: 2307438730152772095
+      type: {class: GenerateButtonData, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data: 
+    - rid: 2307438730152772096
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          key: GenerateOperator
+          version: 1.0.0
+          settings:
+          - TextToImage
+          - 4
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772097
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772098
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772099
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772100
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772101
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: TextToImage
+        Guid: 3f49aa90-d66a-4105-b2c4-d7d4d283e2b7
+        BatchRequestIdentifier: 
+        Seed: 3276452874
+        m_Operators:
+        - rid: 2307438730152772102
+        - rid: 2307438730152772103
+        - rid: 2307438730152772104
+        - rid: 2307438730152772105
+        - rid: 2307438730152772106
+        history:
+        - rid: 2307438730152772101
+        children: []
+        IsPbrMode: 0
+    - rid: 2307438730152772102
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          key: GenerateOperator
+          version: 1.0.0
+          settings:
+          - TextToImage
+          - 4
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772103
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772104
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772105
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772106
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772107
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: TextToImage
+        Guid: bb3885f1-c0d6-4df6-bf2f-c49ac04d3be0
+        BatchRequestIdentifier: 
+        Seed: 440862784
+        m_Operators:
+        - rid: 2307438730152772108
+        - rid: 2307438730152772109
+        - rid: 2307438730152772110
+        - rid: 2307438730152772111
+        - rid: 2307438730152772112
+        history:
+        - rid: 2307438730152772107
+        children: []
+        IsPbrMode: 0
+    - rid: 2307438730152772108
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          key: GenerateOperator
+          version: 1.0.0
+          settings:
+          - TextToImage
+          - 4
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772109
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772110
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772111
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772112
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772113
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: TextToImage
+        Guid: 842a0cfb-d2b3-4be4-885f-a06ed5cbeb30
+        BatchRequestIdentifier: 
+        Seed: 1875327258
+        m_Operators:
+        - rid: 2307438730152772114
+        - rid: 2307438730152772115
+        - rid: 2307438730152772116
+        - rid: 2307438730152772117
+        - rid: 2307438730152772118
+        history:
+        - rid: 2307438730152772113
+        children: []
+        IsPbrMode: 0
+    - rid: 2307438730152772114
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          key: GenerateOperator
+          version: 1.0.0
+          settings:
+          - TextToImage
+          - 4
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772115
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772116
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772117
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772118
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772119
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: TextToImage
+        Guid: c7bbc724-6457-4f6c-9bcb-e6e7e56c7467
+        BatchRequestIdentifier: 
+        Seed: 3399063198
+        m_Operators:
+        - rid: 2307438730152772120
+        - rid: 2307438730152772121
+        - rid: 2307438730152772122
+        - rid: 2307438730152772123
+        - rid: 2307438730152772124
+        history:
+        - rid: 2307438730152772119
+        children: []
+        IsPbrMode: 0
+    - rid: 2307438730152772120
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          key: GenerateOperator
+          version: 1.0.0
+          settings:
+          - TextToImage
+          - 4
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772121
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772122
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772123
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772124
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772125
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: 
+        Guid: 76140673-45dd-40b1-9717-0fa3e71bdca7
+        BatchRequestIdentifier: 
+        Seed: 0
+        m_Operators:
+        - rid: 2307438730152772126
+        - rid: 2307438730152772127
+        history:
+        - rid: 2307438730152772125
+        children: []
+        IsPbrMode: 1
+    - rid: 2307438730152772126
+      type: {class: UpscaleOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: UpscaleOperator
+          key: UpscaleOperator
+          version: 0.0.1
+          settings:
+          - bb3885f1-c0d6-4df6-bf2f-c49ac04d3be0
+          - '{"operators":[{"type":"GenerateOperator","key":"GenerateOperator","version":"1.0.0","settings":["TextToImage","4"],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"PromptOperator","key":"PromptOperator","version":"0.0.2","settings":["iron
+            ore for a cube shape in space",""],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"LoraOperator","key":"LoraOperator","version":"0.0.1","settings":["guid1"],"enabled":false,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"ReferenceOperator","key":"ReferenceOperator","version":"0.0.2","settings":["","","0","20",""],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"MaskOperator","key":"MaskOperator","version":"0.0.1","settings":["","True","1"],"enabled":false,"assembly":"","hideable":false,"hidden":false,"isRefinement":false}]}'
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772127
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772128
+      type: {class: ImageArtifact, ns: Unity.Muse.Texture, asm: Unity.Muse.Texture}
+      data:
+        mode: 
+        Guid: fdf80663-5bf8-43b9-94eb-a454fc1f791d
+        BatchRequestIdentifier: 
+        Seed: 0
+        m_Operators:
+        - rid: 2307438730152772129
+        - rid: 2307438730152772130
+        history:
+        - rid: 2307438730152772128
+        children: []
+        IsPbrMode: 1
+    - rid: 2307438730152772129
+      type: {class: UpscaleOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: UpscaleOperator
+          key: UpscaleOperator
+          version: 0.0.1
+          settings:
+          - c7bbc724-6457-4f6c-9bcb-e6e7e56c7467
+          - '{"operators":[{"type":"GenerateOperator","key":"GenerateOperator","version":"1.0.0","settings":["TextToImage","4"],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"PromptOperator","key":"PromptOperator","version":"0.0.2","settings":["iron
+            ore for a cube shape in space",""],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"LoraOperator","key":"LoraOperator","version":"0.0.1","settings":["guid1"],"enabled":false,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"ReferenceOperator","key":"ReferenceOperator","version":"0.0.2","settings":["","","0","20",""],"enabled":true,"assembly":"","hideable":false,"hidden":false,"isRefinement":false},{"type":"MaskOperator","key":"MaskOperator","version":"0.0.1","settings":["","True","1"],"enabled":false,"assembly":"","hideable":false,"hidden":false,"isRefinement":false}]}'
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772130
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772135
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          key: PromptOperator
+          version: 0.0.2
+          settings:
+          - iron ore for a cube shape in space
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772136
+      type: {class: LoraOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: LoraOperator
+          key: LoraOperator
+          version: 0.0.1
+          settings:
+          - guid1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772137
+      type: {class: ReferenceOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: ReferenceOperator
+          key: ReferenceOperator
+          version: 0.0.2
+          settings:
+          - 
+          - 
+          - 0
+          - 20
+          - 
+          enabled: 1
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
+    - rid: 2307438730152772138
+      type: {class: MaskOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: MaskOperator
+          key: MaskOperator
+          version: 0.0.1
+          settings:
+          - 
+          - True
+          - 1
+          enabled: 0
+          assembly: 
+          hideable: 0
+          hidden: 0
+          isRefinement: 0
